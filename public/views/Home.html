@@ -1,0 +1,23 @@
+<div ng-controller="HomeController as vm">
+	<br>
+	<br>
+	<div class="well container form-inline" style="text-align:center;">
+		<input class"form-control" ng-model="vm.newMemb.name" placeholder="Name">
+		<input class"form-control" ng-model="vm.newMemb.last" placeholder="Last Name">
+		<button type="button" class="btn btn-success" ng-click="vm.addMemb()"> Add New Member </button>
+	</div>
+			<div class="well container" ng-repeat ="t in vm.members">
+				<h4>Member #{{$index+1}}: <h3> <b>{{t.name}} {{t.last}} </b> </h3> </h4>
+				<h4> Activation: <i> {{t.activ | date: "medium"}} </i></h4>
+				<h4> Deactivation: <i> {{t.deactiv | date: "medium"}} </i></h4>
+
+		    <button ng-show="!t.deactiv" type="button" class="btn btn-warning" ng-click="vm.deactivMemb(t)"> Deactivate </button>
+				<button ng-show="t.deactiv" type="button" class="btn btn-info" ng-click="vm.reactivMemb(t)"> Reactivate </button>
+				<!-- end if for buttons		 -->
+				<button type="button" class="btn btn-danger" ng-click="vm.deleteMemb(t)"> Delete </button>
+			</div>
+
+
+
+
+</div>
