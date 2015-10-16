@@ -21,7 +21,7 @@ vm.addMemb = function(){
 };
 
 vm.deleteMemb = function(del){
-	HomeFactory.removeMemb(del.id).then(function(){
+	HomeFactory.removeMemb(del._id).then(function(){
 		vm.members.splice(vm.members.indexOf(del), 1);
 	});
 };

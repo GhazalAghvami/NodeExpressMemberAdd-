@@ -1,9 +1,11 @@
 var express = require('express');
 var path = require('path');
 var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
 var app = express();
 var port = process.env.PORT || 3000;
-
+require('./models/theModel');
+mongoose.connect('mongodb://localhost/memberlist');
 
 app.set('views', path.join(__dirname, 'views'));
 //set the view engine that will render HTML from the server to the client
@@ -25,11 +27,9 @@ app.use(bodyParser.json());
 var theRoutes = require('./routes/theRoutes');
 
 app.use(function(req, res, next){
-	console.log( req.method +" "+ req.path);
 	next();
 });
 
-//on homepage load, render the index page
 app.get('/', function(req, res) {
 	res.render('index');
 });
@@ -37,7 +37,8 @@ app.get('/', function(req, res) {
 app.use('/api/v1/membr', theRoutes);
 
 app.use(function(err, req, res, next){
-	console.log("ERR" + err.err);
+	if (err.err) console.log("ERR: " + err.err);
+	 else console.log("ERR" + err.err);
 	res.status(400).send(err);
 });
 

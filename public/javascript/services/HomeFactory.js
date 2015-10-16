@@ -24,7 +24,7 @@ o.createMemb = function(newMemb){
 
 o.removeMemb = function(id){
 	var q =$q.defer();
-	$http.delete('/api/v1/membr/'+id).then(function(){
+	$http.delete('/api/v1/membr/'+id).then(function(res){
 		q.resolve();
 	});
 	return q.promise;
@@ -32,7 +32,7 @@ o.removeMemb = function(id){
 
 o.deactiv = function(de){
 	var q =$q.defer();
-	$http.put('/api/v1/membr/'+ de.id).then(function(){
+	$http.put('/api/v1/membr/'+ de._id).then(function(){
 		q.resolve();
 	});
 	return q.promise;
@@ -40,7 +40,7 @@ o.deactiv = function(de){
 
 o.reactiv = function(re){
 	var q =$q.defer();
-	$http.patch('/api/v1/membr/'+ re.id).then(function(){
+	$http.patch('/api/v1/membr/'+ re._id).then(function(){
 		q.resolve();
 	});
 	return q.promise;
